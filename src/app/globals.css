@@ -2,6 +2,7 @@
   --background: #dddee3;
   --foreground: #303030;
   --box: #FFF7ED;
+  --navBar: #FFBF69;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -9,6 +10,7 @@
     --background: #303030;
     --foreground: #dddee3;
     --box: #525257;
+    --navBar: #c97200;
 
   }
 }
@@ -23,6 +25,7 @@ html {
 * {
   padding: 0;
   margin: 0;
+  color: var(--foreground);
 }
 
 a {

@@ -15,9 +15,8 @@ export const NavBar = () => {
   return (
     <Navbar
       style={{
-        backgroundColor: "#FFBF69",
+        backgroundColor: "var(--navBar)",
       }}
-      variant="dark"
     >
       <Container>
         <Navbar.Brand className="d-flex align-items-center">
