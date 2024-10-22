@@ -5,34 +5,48 @@ import {
   Image,
   Form,
   FormControl,
-  Button,
+  Row,
+  Col,
 } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 
 export const NavBar = () => {
   return (
-    <Navbar bg="primary" variant="dark" className="shadow">
+    <Navbar
+      style={{
+        backgroundColor: "#FFBF69",
+      }}
+      variant="dark"
+    >
       <Container>
         <Navbar.Brand className="d-flex align-items-center">
           <Image
             src="/images/reddit-logo.png"
             alt="reddit logo"
             roundedCircle
-            height={50}
-            width={50}
+            height={55}
+            width={55}
           />
-          <Form.Text>Lite</Form.Text>
+          <Form.Text style={{ fontSize: "23px" }}>Lite</Form.Text>
         </Navbar.Brand>
 
-        <FormControl
-          type="search"
-          placeholder="Type your search here"
-          className="me-5"
-          aria-label="Search"
-        />
-        <Button variant="outline-light">
-          <i className="bi bi-search"></i>
-        </Button>
+        <Col xs={8} className="mx-auto">
+          <Row className="justify-content-center align-items-center">
+            <Col xs={5}>
+              <FormControl
+                type="search"
+                placeholder="Type your search here"
+                className="me-1"
+                aria-label="Search"
+                size="lg"
+              />
+            </Col>
+            <Col xs="auto">
+              <MagnifyingGlass size={35} />
+            </Col>
+          </Row>
+        </Col>
       </Container>
     </Navbar>
   );
