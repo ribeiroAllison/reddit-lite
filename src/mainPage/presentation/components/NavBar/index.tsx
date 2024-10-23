@@ -18,7 +18,7 @@ export const NavBar = () => {
         backgroundColor: "var(--navBar)",
       }}
     >
-      <Container>
+      <Container className="mx-3">
         <Navbar.Brand className="d-flex align-items-center">
           <Image
             src="/images/reddit-logo.png"
