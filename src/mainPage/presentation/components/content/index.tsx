@@ -8,7 +8,7 @@ import styles from "./styles.module.css";
 
 export const Content = () => {
   return (
-    <Container style={{ backgroundColor: "var(--box)", borderRadius: "10px" }}>
+    <Container className="ctn">
       <Row>
         <Col className="mt-4">
           <div className="d-flex flex-column justify-content-start align-items-center h-100">

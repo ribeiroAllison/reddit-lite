@@ -3,6 +3,8 @@
   --foreground: #303030;
   --box: #FFF7ED;
   --navBar: #FFBF69;
+  --selected: #fbab43;
+  --hover: #aaaaaa;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +33,11 @@ html {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.ctn{
+  background-color: var(--box);
+  border-radius: 10px;
 }
 
 @media (prefers-color-scheme: dark) {
