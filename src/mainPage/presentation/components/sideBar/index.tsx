@@ -1,8 +1,8 @@
 import { Container, Row, Col } from "react-bootstrap";
-import { SubReddit } from "@/mainPage/presentation/components/subReddit";
+import { useDispatch, useSelector } from "react-redux";
+import { SubReddit } from "@/mainPage/presentation/components/sideBar/subReddit";
 import { SubRedditType } from "@/core/types/SubReddit";
 import { selectSubReddit, toggleCard } from "@/core/data/slices/sideBarSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 export const SideBar = () => {
   const data = useSelector(selectSubReddit);

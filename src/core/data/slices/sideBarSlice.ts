@@ -31,22 +31,10 @@ const sideBarSlice = createSlice({
       );
       state.subReddits[id].selected = true;
     },
-
-    addCard: (state, action) => {
-      action.payload.map((sub: SubRedditType) => {
-        const { id, src, name, selected } = sub;
-        state.subReddits[id] = {
-          src: src,
-          name: name,
-          selected: selected,
-          id: id,
-        };
-      });
-    },
   },
 });
 
 export const selectSubReddit = (state: any) => state.sideBarSlice.subReddits;
 
-export const { toggleCard, addCard } = sideBarSlice.actions;
+export const { toggleCard } = sideBarSlice.actions;
 export default sideBarSlice.reducer;
