@@ -8,7 +8,7 @@ export const MainPage = () => {
   return (
     <main style={{ backgroundColor: "var(--background)" }}>
       <NavBar />
-      <Container className="m-3">
+      <Container fluid className="my-3">
         <Row className="justify-content-center">
           <Col xs={9}>
             <Content />

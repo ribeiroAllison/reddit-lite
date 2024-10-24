@@ -5,11 +5,19 @@ type Props = {
   src: string;
   name: string;
   selected: boolean;
+  onClick: () => void;
+  id: string;
 };
 
-export const SubReddit = ({ src, name, selected }: Props) => {
+export const SubReddit = ({
+  src,
+  name,
+  selected = false,
+  onClick,
+  id,
+}: Props) => {
   return (
-    <Container>
+    <Container onClick={onClick} id={id}>
       <Row
         className={`d-flex jusify-content-start align-items-center gap-2 my-2 mx-2 rounded ${
           selected ? styles.selected : styles.cardCtn

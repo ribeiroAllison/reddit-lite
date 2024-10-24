@@ -1,7 +1,10 @@
+"use client";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
+import store from "@/core/data/store";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,10 +17,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Reddit Lite",
-  description: "A light app to read reddit posts",
-};
+// export const metadata: Metadata = {
+//   title: "Reddit Lite",
+//   description: "A light app to read reddit posts",
+// };
 
 export default function RootLayout({
   children,
@@ -25,10 +28,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
-    </html>
+    <Provider store={store}>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          {children}
+        </body>
+      </html>
+    </Provider>
   );
 }
