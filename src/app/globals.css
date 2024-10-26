@@ -5,6 +5,8 @@
   --navBar: #FFBF69;
   --selected: #fbab43;
   --hover: #aaaaaa;
+  --blue100: #037ca5;
+  --red100: #e3242b;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +15,10 @@
     --foreground: #dddee3;
     --box: #525257;
     --navBar: #c97200;
+    --selected: #fbab43;
+    --hover: #aaaaaa;
+    --blue100: #037ca5;
+    --red100: #990f02;
 
   }
 }

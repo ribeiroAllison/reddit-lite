@@ -34,7 +34,8 @@ const sideBarSlice = createSlice({
   },
 });
 
-export const selectSubReddit = (state: any) => state.sideBarSlice.subReddits;
+export const selectSubReddit = (state: { sideBarSlice: SubRedditState }) =>
+  state.sideBarSlice.subReddits;
 
 export const { toggleCard } = sideBarSlice.actions;
 export default sideBarSlice.reducer;

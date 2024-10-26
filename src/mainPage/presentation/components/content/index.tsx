@@ -18,6 +18,7 @@ export const Content = () => {
           comments={card.comments}
           time={card.time}
           user={card.user}
+          key={card.id}
         />
       ))}
     </>

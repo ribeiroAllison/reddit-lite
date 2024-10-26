@@ -1,7 +1,7 @@
 export type ContentType = {
   id: string;
   title: string;
-  points: string;
+  points: number;
   figure: string;
   user: string;
   time: string;
