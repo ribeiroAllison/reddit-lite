@@ -7,6 +7,7 @@
   --hover: #aaaaaa;
   --blue100: #037ca5;
   --red100: #e3242b;
+  --commentBox: #F5E8DD;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +20,7 @@
     --hover: #aaaaaa;
     --blue100: #037ca5;
     --red100: #990f02;
+    --commentBox: #B5C0D0;
 
   }
 }

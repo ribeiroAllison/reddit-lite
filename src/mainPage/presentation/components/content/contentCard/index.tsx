@@ -9,6 +9,7 @@ import { ContentType } from "@/core/types/ContenType";
 import { addPoint, subtractPoint } from "@/core/data/slices/contentSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { CommentCard } from "../commentCard";
 
 export const ContentCard = ({
   id,
@@ -22,7 +23,9 @@ export const ContentCard = ({
   const [arrowStyle, setArrowStyle] = useState<"normal" | "up" | "down">(
     "normal"
   );
+  const [toggleMessage, setToggleMessage] = useState<boolean>(false);
   const dispatch = useDispatch();
+
   const transformPoints = (point: number) => {
     if (point > 1000) {
       const reducedPoints = (point / 1000).toString();
@@ -44,8 +47,12 @@ export const ContentCard = ({
     setArrowStyle(type);
   };
 
+  const handleMsgClick = () => {
+    setToggleMessage(!toggleMessage);
+  };
+
   return (
-    <Container className="ctn">
+    <Container className="ctn mb-3 pb-2">
       <Row>
         <Col className="mt-4">
           <div
@@ -70,23 +77,40 @@ export const ContentCard = ({
         <Col xs="11" className="d-flex flex-column mt-4 mb-0">
           <h2 className="fs-3">{title}</h2>
           <Image src={figure} className="rounded" alt="Image" />
-          <p>
-            ______________________________________________________________________________________________________
-          </p>
+          <Image src="/images/line.png" className="my-2" />
           <Row className="d-flex justify-content-space-between">
             <Col className="d-flex align-items-center justify-content-start">
-              <p className={styles.text}>{user}</p>
+              <p
+                className={styles.text}
+                style={{ color: "var(--blue100)", fontWeight: "bold" }}
+              >
+                {user}
+              </p>
             </Col>
             <Col className="d-flex justify-content-center align-items-center">
-              <p className={styles.text}>{time}</p>
+              <p className={styles.text} style={{ color: "var(--hover)" }}>
+                {time}
+              </p>
             </Col>
             <Col className="d-flex align-items-center justify-content-end">
-              <ChatCircle className={`${styles.text} ${styles.onHover}`} />
+              <ChatCircle
+                className={`${styles.text} ${styles.onHover}`}
+                onClick={handleMsgClick}
+              />
               <p className={styles.text}>{comments.length}</p>
             </Col>
           </Row>
         </Col>
       </Row>
+      {toggleMessage &&
+        comments.map((comment) => (
+          <CommentCard
+            userName={comment.user}
+            time={comment.time}
+            comment={comment.comment}
+            key={comment.user}
+          />
+        ))}
     </Container>
   );
 };
