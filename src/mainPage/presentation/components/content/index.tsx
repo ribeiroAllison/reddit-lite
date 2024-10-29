@@ -19,6 +19,7 @@ export const Content = () => {
           time={card.time}
           user={card.user}
           key={card.id}
+          video={card.video}
         />
       ))}
     </>

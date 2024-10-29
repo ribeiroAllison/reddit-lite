@@ -19,6 +19,7 @@ export const ContentCard = ({
   comments,
   time,
   user,
+  video,
 }: ContentType) => {
   const [arrowStyle, setArrowStyle] = useState<"normal" | "up" | "down">(
     "normal"
@@ -51,6 +52,29 @@ export const ContentCard = ({
     setToggleMessage(!toggleMessage);
   };
 
+  const renderMedia = (figure: string, video: string) => {
+    const isFigureViable =
+      figure.includes(".png") ||
+      figure.includes(".jpg") ||
+      figure.includes(".jpeg");
+
+    const isVideoViable = video !== "";
+
+    if (isFigureViable) {
+      return <Image src={figure} className="rounded" alt="Image" />;
+    }
+
+    if (isVideoViable) {
+      return (
+        <video controls style={{ maxHeight: "90vh" }}>
+          <source src={video} type="video/mp4"></source>
+        </video>
+      );
+    }
+
+    return;
+  };
+
   return (
     <Container className="ctn mb-3 pb-2">
       <Row>
@@ -76,7 +100,8 @@ export const ContentCard = ({
         </Col>
         <Col xs="11" className="d-flex flex-column mt-4 mb-0">
           <h2 className="fs-3">{title}</h2>
-          <Image src={figure} className="rounded" alt="Image" />
+          {renderMedia(figure, video)}
+
           <Image src="/images/line.png" className="my-2" />
           <Row className="d-flex justify-content-space-between">
             <Col className="d-flex align-items-center justify-content-start">

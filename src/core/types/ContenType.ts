@@ -5,6 +5,7 @@ export type ContentType = {
   figure: string;
   user: string;
   time: string;
+  video: string;
   comments: {
     user: string;
     comment: string;

@@ -12,7 +12,7 @@ const contentSlice = createSlice({
   } as ContentState,
   reducers: {
     addCard: (state, action) => {
-      const { id, title, points, figure, user, time, comments } =
+      const { id, title, points, figure, user, time, comments, video } =
         action.payload;
       state.content[id] = {
         id: id,
@@ -22,6 +22,7 @@ const contentSlice = createSlice({
         user: user,
         time: time,
         comments: comments,
+        video: video,
       };
     },
 
@@ -34,10 +35,15 @@ const contentSlice = createSlice({
       const { id } = action.payload;
       state.content[id].points -= 1;
     },
+
+    resetState: (state) => {
+      state.content = {};
+    },
   },
 });
 
 export const selectContent = (state: { contentSlice: ContentState }) =>
   state.contentSlice.content;
-export const { addPoint, subtractPoint, addCard } = contentSlice.actions;
+export const { addPoint, subtractPoint, addCard, resetState } =
+  contentSlice.actions;
 export default contentSlice.reducer;

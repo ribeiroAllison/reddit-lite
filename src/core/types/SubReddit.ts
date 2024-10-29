@@ -3,4 +3,5 @@ export type SubRedditType = {
   name: string;
   selected: boolean;
   id: string;
+  url: string;
 };

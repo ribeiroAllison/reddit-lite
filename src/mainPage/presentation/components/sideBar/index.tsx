@@ -2,6 +2,9 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { SubReddit } from "@/mainPage/presentation/components/sideBar/subReddit";
 import { SubRedditType } from "@/core/types/SubReddit";
+import { ContentType } from "@/core/types/ContenType";
+import { fetchPost } from "@/mainPage/infra";
+import { addCard, resetState } from "@/core/data/slices/contentSlice";
 import { selectSubReddit, toggleCard } from "@/core/data/slices/sideBarSlice";
 
 export const SideBar = () => {
@@ -9,8 +12,32 @@ export const SideBar = () => {
   const subReddits: SubRedditType[] = Object.values(data);
   const dispatch = useDispatch();
 
-  const handleClick = (id: string) => {
+  const getSelectedPosts = async (url: string) => {
+    const response = await fetchPost(url);
+    response.forEach((item: ContentType) => {
+      const { id, title, points, figure, user, time, comments, video } = item;
+      dispatch(
+        addCard({
+          id: id,
+          title: title,
+          points: points,
+          figure: figure,
+          user: user,
+          time: time,
+          comments: comments,
+          video: video,
+        })
+      );
+    });
+  };
+
+  const handleClick = async (id: string) => {
     dispatch(toggleCard({ id: id }));
+    dispatch(resetState());
+    const url = data[id].url;
+    if (url) {
+      await getSelectedPosts(url);
+    }
   };
 
   return (

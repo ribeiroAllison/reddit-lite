@@ -7,6 +7,7 @@ export class RedditPost {
   public readonly user: string;
   public readonly time: string;
   public readonly figure: string;
+  public readonly video: any;
   public readonly comments: {
     user: string;
     comment: string;
@@ -18,9 +19,10 @@ export class RedditPost {
     this.id = data.id;
     this.title = data.title;
     this.points = data.score;
-    this.user = data.name;
+    this.user = data.author;
     this.time = transformDate(data.created_utc);
     this.figure = data.url;
+    this.video = data.secure_media?.reddit_video?.fallback_url || "";
     this.comments = [
       {
         user: "Maria Chiquinha",
@@ -37,7 +39,12 @@ export type RedditPostData = {
   id: string;
   title: string;
   score: number;
-  name: string;
+  author: string;
   created_utc: number;
   url: string;
+  secure_media: {
+    reddit_video: {
+      fallback_url: string;
+    };
+  };
 };

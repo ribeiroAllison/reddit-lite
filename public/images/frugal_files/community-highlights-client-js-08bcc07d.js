@@ -1,0 +1,2 @@
+import"./shreddit-gallery-carousel-49473ad8.js";import"./community-highlight-card-59d2a6d4.js";import"./icon-732d0443.js";import"./shell-10899a6f.js";import"./faceplate-carousel-f5e24e5e.js";import"./TinyGesture-b7fb4b5e.js";import"./makeEventDispatcher-0d7db2ea.js";import"./faceplate-pagination-indicator-40153a46.js";import"./element-inside-18a3ce35.js";import"./throttle-b6c85397.js";import"./community-highlight-card-565ed4c9.js";
+//# sourceMappingURL=community-highlights-client-js-08bcc07d.js.map
