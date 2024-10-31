@@ -1,3 +1,5 @@
+import { CommentType } from "./CommentType";
+
 export type ContentType = {
   id: string;
   title: string;
@@ -6,10 +8,5 @@ export type ContentType = {
   user: string;
   time: string;
   video: string;
-  comments: {
-    user: string;
-    comment: string;
-    time: string;
-    total: number;
-  }[];
+  comments: CommentType[];
 };

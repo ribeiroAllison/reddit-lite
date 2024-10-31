@@ -6,10 +6,17 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import styles from "./styles.module.css";
 import { ContentType } from "@/core/types/ContenType";
-import { addPoint, subtractPoint } from "@/core/data/slices/contentSlice";
-import { useDispatch } from "react-redux";
+import {
+  addPoint,
+  subtractPoint,
+  updateComments,
+} from "@/core/data/slices/contentSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { CommentCard } from "../commentCard";
+import { fetchComments } from "@/mainPage/infra";
+import { selectCurrentSubReddit } from "@/core/data/slices/sideBarSlice";
+import { PropagateLoader } from "react-spinners";
 
 export const ContentCard = ({
   id,
@@ -25,15 +32,19 @@ export const ContentCard = ({
     "normal"
   );
   const [toggleMessage, setToggleMessage] = useState<boolean>(false);
+  const [isMessageLoading, setIsMessageLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const currentSub = useSelector(selectCurrentSubReddit);
 
   const transformPoints = (point: number) => {
     if (point > 1000) {
       const reducedPoints = (point / 1000).toString();
       const pointsArray: string[] = reducedPoints.split(".");
-      const finalNumber: string =
-        pointsArray[0] + "." + pointsArray[1].slice(0, 1) + "K";
-      return finalNumber;
+      if (pointsArray) {
+        const finalNumber: string =
+          pointsArray[0] + "." + pointsArray[1].slice(0, 1) + "K";
+        return finalNumber;
+      }
     } else {
       return point.toString();
     }
@@ -48,8 +59,12 @@ export const ContentCard = ({
     setArrowStyle(type);
   };
 
-  const handleMsgClick = () => {
+  const handleMsgClick = async () => {
+    setIsMessageLoading(true);
     setToggleMessage(!toggleMessage);
+    const comments = await fetchComments(currentSub, id);
+    dispatch(updateComments({ id: id, comments: comments }));
+    setIsMessageLoading(false);
   };
 
   const renderMedia = (figure: string, video: string) => {
@@ -122,12 +137,21 @@ export const ContentCard = ({
                 className={`${styles.text} ${styles.onHover}`}
                 onClick={handleMsgClick}
               />
-              <p className={styles.text}>{comments.length}</p>
+              <p className={styles.text}>
+                {comments.length > 0 ? comments.length : ""}
+              </p>
             </Col>
           </Row>
         </Col>
       </Row>
+      {toggleMessage && isMessageLoading && (
+        <Container className="d-flex h-100 justify-content-center">
+          <PropagateLoader color="var(--foreground)" />
+        </Container>
+      )}
+
       {toggleMessage &&
+        !isMessageLoading &&
         comments.map((comment) => (
           <CommentCard
             userName={comment.user}

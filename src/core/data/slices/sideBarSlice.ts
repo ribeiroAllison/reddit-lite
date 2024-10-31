@@ -3,6 +3,7 @@ import { SubRedditType } from "@/core/types/SubReddit";
 
 type SubRedditState = {
   subReddits: Record<string, SubRedditType>;
+  currentSubReddit: string;
 };
 
 const sideBarSlice = createSlice({
@@ -59,6 +60,7 @@ const sideBarSlice = createSlice({
         url: "/r/BeAmazed.json",
       },
     },
+    currentSubReddit: "",
   } as SubRedditState,
   reducers: {
     toggleCard: (state, action) => {
@@ -67,12 +69,17 @@ const sideBarSlice = createSlice({
         (key) => (state.subReddits[key].selected = false)
       );
       state.subReddits[id].selected = true;
+      state.currentSubReddit = state.subReddits[id].url.slice(0, -6);
     },
   },
 });
 
 export const selectSubReddit = (state: { sideBarSlice: SubRedditState }) =>
   state.sideBarSlice.subReddits;
+
+export const selectCurrentSubReddit = (state: {
+  sideBarSlice: SubRedditState;
+}) => state.sideBarSlice.currentSubReddit;
 
 export const { toggleCard } = sideBarSlice.actions;
 export default sideBarSlice.reducer;

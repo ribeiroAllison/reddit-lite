@@ -4,7 +4,11 @@ import { SubReddit } from "@/mainPage/presentation/components/sideBar/subReddit"
 import { SubRedditType } from "@/core/types/SubReddit";
 import { ContentType } from "@/core/types/ContenType";
 import { fetchPost } from "@/mainPage/infra";
-import { addCard, resetState } from "@/core/data/slices/contentSlice";
+import {
+  addCard,
+  resetState,
+  toggleLoading,
+} from "@/core/data/slices/contentSlice";
 import { selectSubReddit, toggleCard } from "@/core/data/slices/sideBarSlice";
 
 export const SideBar = () => {
@@ -32,12 +36,14 @@ export const SideBar = () => {
   };
 
   const handleClick = async (id: string) => {
+    dispatch(toggleLoading());
     dispatch(toggleCard({ id: id }));
     dispatch(resetState());
     const url = data[id].url;
     if (url) {
       await getSelectedPosts(url);
     }
+    dispatch(toggleLoading());
   };
 
   return (

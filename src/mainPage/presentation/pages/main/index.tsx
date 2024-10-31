@@ -4,13 +4,16 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Content } from "../../components/content";
 import { SideBar } from "../../components/sideBar";
 import { fetchPost } from "@/mainPage/infra";
-import { useDispatch } from "react-redux";
-import { addCard } from "@/core/data/slices/contentSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addCard, toggleLoading } from "@/core/data/slices/contentSlice";
 import { useEffect } from "react";
 import { ContentType } from "@/core/types/ContenType";
+import { Loader } from "@/core/components/loader";
+import { selectLoading } from "@/core/data/slices/contentSlice";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoading);
 
   const getInitialPosts = async () => {
     const response = await fetchPost("/.json");
@@ -32,16 +35,20 @@ export const MainPage = () => {
   };
 
   useEffect(() => {
-    getInitialPosts();
+    const fetchData = async () => {
+      dispatch(toggleLoading());
+      await getInitialPosts();
+      dispatch(toggleLoading());
+    };
+
+    fetchData();
   }, []);
   return (
     <main style={{ backgroundColor: "var(--background)" }}>
       <NavBar />
       <Container fluid className="my-3">
         <Row className="justify-content-center">
-          <Col xs={9}>
-            <Content />
-          </Col>
+          <Col xs={9}>{isLoading ? <Loader /> : <Content />}</Col>
           <Col>
             <SideBar />
           </Col>

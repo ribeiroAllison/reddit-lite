@@ -12,13 +12,11 @@ export const fetchPost = async (url: string) => {
 };
 
 export const fetchComments = async (url: string, postId: string) => {
-  const apiResponse = await API.get(`${url}/${postId}/.json`);
+  const apiResponse = await API.get(`${url}/comments/${postId}/.json`);
 
   if (apiResponse) {
-    const responseArray = apiResponse.data;
-    const response = responseArray.map((item: any) => {
-      if (item.data.children.data.body) new Comment(item.data.children.data);
-    });
-    return response;
+    const data = apiResponse.data;
+    const commentArray = data.map((item: any) => item.data.children);
+    return commentArray[1].map((comment: any) => new Comment(comment.data));
   }
 };

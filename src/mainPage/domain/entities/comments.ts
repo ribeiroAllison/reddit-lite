@@ -1,3 +1,5 @@
+import { transformDate } from "@/core/utils/transformData";
+
 export class Comment {
   public readonly user: string;
   public readonly comment: string;
@@ -6,12 +8,12 @@ export class Comment {
   constructor(data: CommentData) {
     this.user = data.author;
     this.comment = data.body;
-    this.time = data.created_utc;
+    this.time = transformDate(data.created_utc);
   }
 }
 
 export type CommentData = {
   author: string;
   body: string;
-  created_utc: string;
+  created_utc: number;
 };
