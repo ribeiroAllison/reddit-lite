@@ -7,11 +7,19 @@ import {
   FormControl,
   Row,
   Col,
+  Button,
 } from "react-bootstrap";
+import { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { MagnifyingGlass } from "@phosphor-icons/react";
+import styles from "./styles.module.css";
 
 export const NavBar = () => {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setIsDarkMode(!isDarkMode);
+  };
   return (
     <Navbar
       style={{
@@ -45,6 +53,15 @@ export const NavBar = () => {
               <MagnifyingGlass size={35} />
             </Col>
           </Row>
+        </Col>
+        <Col>
+          <Form.Check
+            onChange={handleClick}
+            type="switch"
+            label={isDarkMode ? "Light Mode" : "Dark Mode"}
+            checked={isDarkMode}
+            id={styles.darkSwitch}
+          ></Form.Check>
         </Col>
       </Container>
     </Navbar>

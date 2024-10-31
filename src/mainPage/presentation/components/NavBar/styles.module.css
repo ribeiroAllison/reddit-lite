@@ -1,0 +1,11 @@
+#darkSwitch:checked {
+    background-color: #434343; 
+  }
+
+  #darkSwitch:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 174, 33, 0.5);
+}
+
+#darkSwitch{
+  border: 1px solid #303030;
+}

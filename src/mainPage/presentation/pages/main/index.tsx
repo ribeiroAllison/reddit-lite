@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import { ContentType } from "@/core/types/ContenType";
 import { Loader } from "@/core/components/loader";
 import { selectLoading } from "@/core/data/slices/contentSlice";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
@@ -54,6 +56,7 @@ export const MainPage = () => {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </main>
   );
 };

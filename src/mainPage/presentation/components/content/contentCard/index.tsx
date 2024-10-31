@@ -17,6 +17,8 @@ import { CommentCard } from "../commentCard";
 import { fetchComments } from "@/mainPage/infra";
 import { selectCurrentSubReddit } from "@/core/data/slices/sideBarSlice";
 import { PropagateLoader } from "react-spinners";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ContentCard = ({
   id,
@@ -62,9 +64,19 @@ export const ContentCard = ({
   const handleMsgClick = async () => {
     setIsMessageLoading(true);
     setToggleMessage(!toggleMessage);
-    const comments = await fetchComments(currentSub, id);
-    dispatch(updateComments({ id: id, comments: comments }));
-    setIsMessageLoading(false);
+    try {
+      const comments = await fetchComments(currentSub, id);
+      if (comments.length === 0) {
+        toast.info("There are no messages for this post");
+        return;
+      }
+      dispatch(updateComments({ id: id, comments: comments }));
+    } catch (error) {
+      console.error(error);
+      toast.error("It was not possible to load messages, plase retry");
+    } finally {
+      setIsMessageLoading(false);
+    }
   };
 
   const renderMedia = (figure: string, video: string) => {
