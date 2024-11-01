@@ -4,7 +4,7 @@
 
 ## What is it?
 
-It is a web app that let's you `browse through reddit` and a few selected sub reddits.
+It is a web app that lets you `browse through reddit` and a few selected subreddits.
 
 ## Why it is?
 
@@ -12,14 +12,14 @@ This was an exercise suggested by Codecademy's `Front End Engineer` course.
 
 ## Project Goal
 
-Solidify knowlage in Redux toolkit, I also backed myself into some corners so I could `find new solutions` to old problems.
+Solidify knowledge in Redux toolkit, I also backed myself into some corners so I could `find new solutions` to old problems.
 
-> **The self imposed restrictions to the project were:**
+> **The self-imposed restrictions to the project were:**
 
-- No `data transformations` from API should be done by a componenent.
+- No `data transformations` from API should be done by a component.
 - `No CSS`, just use bootstrap (OK, I cheated on this one a little bit).
 - Only `one route` allowed.
-- No `any` type inside the application (type any for objects from api are OK).
+- No `any` type inside the application (type any for objects from API are OK).
 
 ## Main technologies used:
 
