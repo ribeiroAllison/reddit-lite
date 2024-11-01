@@ -2,13 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { SubReddit } from "@/mainPage/presentation/components/sideBar/subReddit";
 import { SubRedditType } from "@/core/types/SubReddit";
-import { ContentType } from "@/core/types/ContenType";
-import { fetchPost } from "@/mainPage/infra";
-import {
-  addCard,
-  resetState,
-  toggleLoading,
-} from "@/core/data/slices/contentSlice";
+import { resetState, toggleLoading } from "@/core/data/slices/contentSlice";
 import { selectSubReddit, toggleCard } from "@/core/data/slices/sideBarSlice";
 import { getPosts } from "@/core/utils/getPosts";
 
