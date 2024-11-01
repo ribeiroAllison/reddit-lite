@@ -5,6 +5,7 @@ import { CommentType } from "@/core/types/CommentType";
 type ContentState = {
   content: Record<string, ContentType>;
   isLoading: boolean;
+  nightMode: boolean;
 };
 
 const contentSlice = createSlice({
@@ -12,6 +13,7 @@ const contentSlice = createSlice({
   initialState: {
     content: {},
     isLoading: false,
+    nightMode: false,
   } as ContentState,
   reducers: {
     addCard: (state, action) => {
@@ -54,6 +56,14 @@ const contentSlice = createSlice({
     toggleLoading: (state) => {
       state.isLoading = !state.isLoading;
     },
+
+    toggleNightMode: (state) => {
+      state.nightMode = !state.nightMode;
+    },
+
+    setToNightMode: (state) => {
+      state.nightMode = true;
+    },
   },
 });
 
@@ -64,6 +74,10 @@ export const selectLoading = (state: { contentSlice: ContentState }) => {
   return state.contentSlice.isLoading;
 };
 
+export const selectNightMode = (state: { contentSlice: ContentState }) => {
+  return state.contentSlice.nightMode;
+};
+
 export const {
   addPoint,
   subtractPoint,
@@ -71,6 +85,8 @@ export const {
   resetState,
   updateComments,
   toggleLoading,
+  toggleNightMode,
+  setToNightMode,
 } = contentSlice.actions;
 
 export default contentSlice.reducer;
