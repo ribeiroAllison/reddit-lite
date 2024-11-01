@@ -10,30 +10,12 @@ import {
   toggleLoading,
 } from "@/core/data/slices/contentSlice";
 import { selectSubReddit, toggleCard } from "@/core/data/slices/sideBarSlice";
+import { getPosts } from "@/core/utils/getPosts";
 
 export const SideBar = () => {
   const data = useSelector(selectSubReddit);
   const subReddits: SubRedditType[] = Object.values(data);
   const dispatch = useDispatch();
-
-  const getSelectedPosts = async (url: string) => {
-    const response = await fetchPost(url);
-    response.forEach((item: ContentType) => {
-      const { id, title, points, figure, user, time, comments, video } = item;
-      dispatch(
-        addCard({
-          id: id,
-          title: title,
-          points: points,
-          figure: figure,
-          user: user,
-          time: time,
-          comments: comments,
-          video: video,
-        })
-      );
-    });
-  };
 
   const handleClick = async (id: string) => {
     dispatch(toggleLoading());
@@ -41,7 +23,7 @@ export const SideBar = () => {
     dispatch(resetState());
     const url = data[id].url;
     if (url) {
-      await getSelectedPosts(url);
+      await getPosts(dispatch, url);
     }
     dispatch(toggleLoading());
   };

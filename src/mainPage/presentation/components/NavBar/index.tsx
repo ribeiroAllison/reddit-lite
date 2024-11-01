@@ -1,21 +1,14 @@
 "use client";
-import {
-  Navbar,
-  Container,
-  Image,
-  Form,
-  FormControl,
-  Row,
-  Col,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Image, Form, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { MagnifyingGlass } from "@phosphor-icons/react";
 import styles from "./styles.module.css";
+import { getPosts } from "@/core/utils/getPosts";
+import { useDispatch } from "react-redux";
 
 export const NavBar = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const currentDarkMode = window.matchMedia(
@@ -24,55 +17,41 @@ export const NavBar = () => {
     setIsDarkMode(currentDarkMode);
   }, []);
 
-  function toggleColorScheme() {
+  const toggleColorScheme = () => {
     setIsDarkMode(!isDarkMode);
     document.documentElement.classList.toggle("dark-mode");
-  }
+  };
 
   return (
     <Navbar
       style={{
         backgroundColor: "var(--navBar)",
       }}
+      className="d-flex justify-content-between mx-0 w-100"
     >
-      <Container className="mx-3">
-        <Navbar.Brand className="d-flex align-items-center">
-          <Image
-            src="/images/reddit-logo.png"
-            alt="reddit logo"
-            roundedCircle
-            height={55}
-            width={55}
-          />
-          <Form.Text style={{ fontSize: "23px" }}>Lite</Form.Text>
-        </Navbar.Brand>
+      <Navbar.Brand
+        className="d-flex align-items-center mx-5 hover"
+        onClick={() => getPosts(dispatch, "/.json")}
+      >
+        <Image
+          src="/images/reddit-logo.png"
+          alt="reddit logo"
+          roundedCircle
+          height={55}
+          width={55}
+        />
+        <Form.Text style={{ fontSize: "23px" }}>Lite</Form.Text>
+      </Navbar.Brand>
 
-        <Col xs={8} className="mx-auto">
-          <Row className="justify-content-center align-items-center">
-            <Col xs={5}>
-              <FormControl
-                type="search"
-                placeholder="Type your search here"
-                className="me-1"
-                aria-label="Search"
-                size="lg"
-              />
-            </Col>
-            <Col xs="auto">
-              <MagnifyingGlass size={35} />
-            </Col>
-          </Row>
-        </Col>
-        <Col>
-          <Form.Check
-            onChange={toggleColorScheme}
-            type="switch"
-            label={isDarkMode ? "Dark Mode" : "Light Mode"}
-            checked={isDarkMode}
-            id={styles.darkSwitch}
-          ></Form.Check>
-        </Col>
-      </Container>
+      <Col>
+        <Form.Check
+          onChange={toggleColorScheme}
+          type="switch"
+          label={isDarkMode ? "Dark Mode" : "Light Mode"}
+          checked={isDarkMode}
+          id={styles.darkSwitch}
+        ></Form.Check>
+      </Col>
     </Navbar>
   );
 };

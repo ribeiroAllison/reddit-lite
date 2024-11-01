@@ -12,34 +12,16 @@ import { Loader } from "@/core/components/loader";
 import { selectLoading } from "@/core/data/slices/contentSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getPosts } from "@/core/utils/getPosts";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
 
-  const getInitialPosts = async () => {
-    const response = await fetchPost("/.json");
-    response.forEach((item: ContentType) => {
-      const { id, title, points, figure, user, time, comments, video } = item;
-      dispatch(
-        addCard({
-          id: id,
-          title: title,
-          points: points,
-          figure: figure,
-          user: user,
-          time: time,
-          comments: comments,
-          video: video,
-        })
-      );
-    });
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       dispatch(toggleLoading());
-      await getInitialPosts();
+      await getPosts(dispatch, "/.json");
       dispatch(toggleLoading());
     };
 
