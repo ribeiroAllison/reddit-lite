@@ -10,6 +10,19 @@
   --commentBox: #F5E8DD;
 }
 
+.dark-mode{
+  --background: #303030;
+  --foreground: #dddee3;
+  --box: #525257;
+  --navBar: #c97200;
+  --selected: #fbab43;
+  --hover: #aaaaaa;
+  --blue100: #017ca5;
+  --red100: #990f02;
+  --commentBox: #646971;
+
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #303030;

@@ -9,7 +9,7 @@ import {
   Col,
   Button,
 } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import styles from "./styles.module.css";
@@ -17,9 +17,18 @@ import styles from "./styles.module.css";
 export const NavBar = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-  const handleClick = () => {
+  useEffect(() => {
+    const currentDarkMode = window.matchMedia(
+      "prefers-color-scheme: dark"
+    ).matches;
+    setIsDarkMode(currentDarkMode);
+  }, []);
+
+  function toggleColorScheme() {
     setIsDarkMode(!isDarkMode);
-  };
+    document.documentElement.classList.toggle("dark-mode");
+  }
+
   return (
     <Navbar
       style={{
@@ -56,9 +65,9 @@ export const NavBar = () => {
         </Col>
         <Col>
           <Form.Check
-            onChange={handleClick}
+            onChange={toggleColorScheme}
             type="switch"
-            label={isDarkMode ? "Light Mode" : "Dark Mode"}
+            label={isDarkMode ? "Dark Mode" : "Light Mode"}
             checked={isDarkMode}
             id={styles.darkSwitch}
           ></Form.Check>
