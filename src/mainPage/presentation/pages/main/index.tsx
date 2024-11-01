@@ -1,5 +1,5 @@
 "use client";
-import { NavBar } from "../../components/navBar";
+import { NavBar } from "@/mainPage/presentation/components/NavBar";
 import { Container, Row, Col } from "react-bootstrap";
 import { Content } from "../../components/content";
 import { SideBar } from "../../components/sideBar";
