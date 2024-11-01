@@ -1,0 +1,17 @@
+.cardCtn:hover{
+    background-color: var(--hover);
+    cursor: pointer;
+}
+
+.selected{
+    background-color: var(--selected);
+}
+
+.selectedBar{
+    background-color: var(--navBar);
+    color: var(--navBar);
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    width: 6%;
+}

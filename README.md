@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Reddit Reader
 
-## Getting Started
+![alt screenshot of the program](/public/images/screenshot.png "Program screenshot")
 
-First, run the development server:
+## What is it?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+It is a web app that let's you `browse through reddit` and a few selected sub reddits.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Why it is?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This was an exercise suggested by Codecademy's `Front End Engineer` course.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Goal
 
-## Learn More
+Solidify knowlage in Redux toolkit, I also backed myself into some corners so I could `find new solutions` to old problems.
 
-To learn more about Next.js, take a look at the following resources:
+> **The self imposed restrictions to the project were:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- No `data transformations` from API should be done by a componenent.
+- `No CSS`, just use bootstrap (OK, I cheated on this one a little bit).
+- Only `one route` allowed.
+- No `any` type inside the application (type any for objects from api are OK).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Main technologies used:
 
-## Deploy on Vercel
+#### • React.js
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### • Next.js
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### • Typescript
+
+#### • Redux Toolkit
+
+## Here is the deployed finished program, hope you like it!: [Redux Lite](https://mercado-livre-redux.vercel.app/)

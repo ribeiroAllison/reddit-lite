@@ -1,38 +1,69 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #dddee3;
+  --foreground: #303030;
+  --box: #FFF7ED;
+  --navBar: #FFBF69;
+  --selected: #fbab43;
+  --hover: #aaaaaa;
+  --blue100: #037ca5;
+  --red100: #e3242b;
+  --commentBox: #F5E8DD;
+}
+
+.dark-mode{
+  --background: #303030;
+  --foreground: #dddee3;
+  --box: #525257;
+  --navBar: #c97200;
+  --selected: #fbab43;
+  --hover: #aaaaaa;
+  --blue100: #017ca5;
+  --red100: #990f02;
+  --commentBox: #646971;
+
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #303030;
+    --foreground: #dddee3;
+    --box: #525257;
+    --navBar: #c97200;
+    --selected: #fbab43;
+    --hover: #aaaaaa;
+    --blue100: #017ca5;
+    --red100: #990f02;
+    --commentBox: #646971;
+
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+.hover:hover{
+  opacity: 0.7;
+  cursor: pointer;
 }
 
-body {
+html {
+  max-width: 100vw;
   color: var(--foreground);
-  background: var(--background);
+  background-color: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
+  color: var(--foreground);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.ctn{
+  background-color: var(--box);
+  border-radius: 10px;
 }
 
 @media (prefers-color-scheme: dark) {
