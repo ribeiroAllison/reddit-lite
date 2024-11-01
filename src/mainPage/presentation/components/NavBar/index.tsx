@@ -5,21 +5,16 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import styles from "./styles.module.css";
 import { getPosts } from "@/core/utils/getPosts";
 import { useDispatch } from "react-redux";
+import { toggleNightMode } from "@/core/data/slices/contentSlice";
+import { selectNightMode } from "@/core/data/slices/contentSlice";
+import { useSelector } from "react-redux";
 
 export const NavBar = () => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const currentDarkMode = window.matchMedia(
-      "prefers-color-scheme: dark"
-    ).matches;
-    setIsDarkMode(currentDarkMode);
-  }, []);
+  const isNightMode = useSelector(selectNightMode);
 
   const toggleColorScheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark-mode");
+    dispatch(toggleNightMode());
   };
 
   return (
@@ -47,8 +42,8 @@ export const NavBar = () => {
         <Form.Check
           onChange={toggleColorScheme}
           type="switch"
-          label={isDarkMode ? "Dark Mode" : "Light Mode"}
-          checked={isDarkMode}
+          label={isNightMode ? "Dark Mode" : "Light Mode"}
+          checked={isNightMode}
           id={styles.darkSwitch}
         ></Form.Check>
       </Col>

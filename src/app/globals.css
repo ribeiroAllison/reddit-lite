@@ -1,16 +1,4 @@
-:root {
-  --background: #dddee3;
-  --foreground: #303030;
-  --box: #FFF7ED;
-  --navBar: #FFBF69;
-  --selected: #fbab43;
-  --hover: #aaaaaa;
-  --blue100: #037ca5;
-  --red100: #e3242b;
-  --commentBox: #F5E8DD;
-}
-
-.dark-mode{
+.night-mode{
   --background: #303030;
   --foreground: #dddee3;
   --box: #525257;
@@ -23,20 +11,18 @@
 
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #303030;
-    --foreground: #dddee3;
-    --box: #525257;
-    --navBar: #c97200;
-    --selected: #fbab43;
-    --hover: #aaaaaa;
-    --blue100: #017ca5;
-    --red100: #990f02;
-    --commentBox: #646971;
-
-  }
+.light-mode{
+  --background: #dddee3;
+  --foreground: #303030;
+  --box: #FFF7ED;
+  --navBar: #FFBF69;
+  --selected: #fbab43;
+  --hover: #aaaaaa;
+  --blue100: #037ca5;
+  --red100: #e3242b;
+  --commentBox: #F5E8DD;
 }
+
 
 .hover:hover{
   opacity: 0.7;
@@ -66,8 +52,3 @@ a {
   border-radius: 10px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
