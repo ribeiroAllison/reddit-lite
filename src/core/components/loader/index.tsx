@@ -8,6 +8,7 @@ export const Loader = () => {
       style={{ backgroundColor: "var(--background)", height: "100vh" }}
     >
       <RingLoader color="var(--foreground)" />
+      <h1 style={{ color: "var(--foreground)" }}>Loading</h1>
     </Container>
   );
 };

@@ -5,8 +5,13 @@ import {
   resetState,
   toggleLoading,
 } from "../data/slices/contentSlice";
+import { Dispatch } from "react";
+import { UnknownAction } from "@reduxjs/toolkit";
 
-export const getPosts = async (dispatch: any, url: string) => {
+export const getPosts = async (
+  dispatch: Dispatch<UnknownAction>,
+  url: string
+) => {
   dispatch(resetState());
   dispatch(toggleLoading());
   const response = await fetchPost(url);

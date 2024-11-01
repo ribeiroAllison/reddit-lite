@@ -38,11 +38,17 @@ export const ContentCard = ({
   const dispatch = useDispatch();
   const currentSub = useSelector(selectCurrentSubReddit);
 
+  /**
+   * Transforms a number into a reduced string where it is divided by 1000 and the leter K is added
+   * @param point number
+   * @returns string
+   * @example param: 10500 | return: 10.5k
+   */
   const transformPoints = (point: number) => {
     if (point > 1000) {
       const reducedPoints = (point / 1000).toString();
       const pointsArray: string[] = reducedPoints.split(".");
-      if (pointsArray) {
+      if (pointsArray.length > 0) {
         const finalNumber: string =
           pointsArray[0] + "." + pointsArray[1].slice(0, 1) + "K";
         return finalNumber;
@@ -98,7 +104,6 @@ export const ContentCard = ({
         </video>
       );
     }
-
     return;
   };
 
@@ -114,14 +119,18 @@ export const ContentCard = ({
               size={25}
               className={styles.onHover}
               onClick={() => handleArrowClick("up")}
-              color={arrowStyle === "up" ? "var(--blue100)" : "black"}
+              color={
+                arrowStyle === "up" ? "var(--blue100)" : "var(--foreground)"
+              }
             />
             <p className="m-0">{transformPoints(points)}</p>
             <ArrowFatLineDown
               size={25}
               className={styles.onHover}
               onClick={() => handleArrowClick("down")}
-              color={arrowStyle === "down" ? "var(--red100)" : "black"}
+              color={
+                arrowStyle === "down" ? "var(--red100)" : "var(--foreground)"
+              }
             />
           </div>
         </Col>

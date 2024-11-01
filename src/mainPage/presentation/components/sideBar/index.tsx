@@ -2,7 +2,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { SubReddit } from "@/mainPage/presentation/components/sideBar/subReddit";
 import { SubRedditType } from "@/core/types/SubReddit";
-import { resetState, toggleLoading } from "@/core/data/slices/contentSlice";
 import { selectSubReddit, toggleCard } from "@/core/data/slices/sideBarSlice";
 import { getPosts } from "@/core/utils/getPosts";
 
@@ -12,14 +11,11 @@ export const SideBar = () => {
   const dispatch = useDispatch();
 
   const handleClick = async (id: string) => {
-    dispatch(toggleLoading());
     dispatch(toggleCard({ id: id }));
-    dispatch(resetState());
     const url = data[id].url;
     if (url) {
       await getPosts(dispatch, url);
     }
-    dispatch(toggleLoading());
   };
 
   return (
