@@ -31,4 +31,4 @@ Solidify knowledge in Redux toolkit, I also backed myself into some corners so I
 
 #### • Redux Toolkit
 
-## Here is the deployed finished program, hope you like it!: [Redux Lite](https://mercado-livre-redux.vercel.app/)
+## Here is the deployed finished program, hope you like it!: [Redux Lite](https://reddit-lite-two.vercel.app//)
